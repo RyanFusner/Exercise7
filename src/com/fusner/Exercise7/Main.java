@@ -17,6 +17,9 @@ public class Main
         {
             contact.display();
         }
+
+        System.out.println("Total Contacts: " + Contact.getTotal());
+        System.out.println("Total Business Contacts: " + BusinessContact.getTotal());
     }
 }
 
@@ -24,6 +27,7 @@ class Contact
 {
     private String name;
     private String email;
+    private static int total = 0;
 
     //region getters and setters
     public String getName()
@@ -45,12 +49,18 @@ class Contact
     {
         this.email = email;
     }
+
+    public static int getTotal()
+    {
+        return Contact.total;
+    }
     //endregion
 
     public Contact(String name, String email)
     {
         this.name = name;
         this.email = email;
+        Contact.total++;
     }
 
     public void display()
@@ -62,12 +72,19 @@ class Contact
 class BusinessContact extends  Contact
 {
     private String phone;
+    private static int businessTotal = 0;
 
     //region getters and setters
     public String getPhone()
     {
         return phone;
     }
+
+    public static int getTotal()
+    {
+        return BusinessContact.businessTotal;
+    }
+
     //endregion
 
     public void setPhone(String phone)
@@ -79,6 +96,7 @@ class BusinessContact extends  Contact
     {
         super(name, email);
         this.phone = phone;
+        BusinessContact.businessTotal++;
     }
 
     @Override
